@@ -4,7 +4,9 @@ import {THEMES} from './theme';
 export const Wrapper = props => {
   return (
     <SafeAreaView style={styles.wrapper}>
-      <View style={styles.container}>{props.children}</View>
+      <View style={{...styles.container, ...props.style}}>
+        {props.children}
+      </View>
     </SafeAreaView>
   );
 };
@@ -16,6 +18,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingHorizontal: 40,
+    paddingHorizontal: THEMES.PADDING_HORIZONTAL,
   },
 });

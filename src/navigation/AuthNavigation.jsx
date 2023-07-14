@@ -1,8 +1,10 @@
-import {TransitionSpecs, createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import {LoginScreen} from '../screens/authScreens/LoginScreen';
-import {RegisterScreen} from '../screens/authScreens/RegisterScreen';
+import {LoginScreen} from '../screens/notAuthScreens/LoginScreen';
+import {RegisterScreen} from '../screens/notAuthScreens/RegisterScreen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {THEMES} from '../components/theme';
+import {TabNavigation} from './TabNavigation';
+import {ForgotPasswordScreen} from '../screens/notAuthScreens/ForgotPasswordScreen';
 
 const Stack = createNativeStackNavigator();
 export const AuthNavigation = () => {
@@ -14,10 +16,17 @@ export const AuthNavigation = () => {
         gestureDirection: 'horizontal',
         gestureEnabled: true,
         fullScreenGestureEnabled: true,
-
+        statusBarAnimation: 'slide',
+        statusBarStyle: 'dark',
+        statusBarColor: THEMES.BACKGROUND,
       }}>
-      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+      <Stack.Screen
+        name="ForgotPasswordScreen"
+        component={ForgotPasswordScreen}
+      />
+      <Stack.Screen name="TabNavigation" component={TabNavigation} />
     </Stack.Navigator>
   );
 };
