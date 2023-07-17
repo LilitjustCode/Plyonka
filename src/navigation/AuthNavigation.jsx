@@ -15,10 +15,6 @@ export const AuthNavigation = () => {
         animation: 'slide_from_right',
         gestureDirection: 'horizontal',
         gestureEnabled: true,
-        fullScreenGestureEnabled: true,
-        statusBarAnimation: 'slide',
-        statusBarStyle: 'dark',
-        statusBarColor: THEMES.BACKGROUND,
       }}>
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="RegisterScreen" component={RegisterScreen} />

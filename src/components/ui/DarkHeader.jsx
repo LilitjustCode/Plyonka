@@ -2,8 +2,8 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {THEMES} from '../theme';
 
-export const DarkHeader = ({children}) => {
-  return <View style={styles.darkHeader}>{children}</View>;
+export const DarkHeader = ({children, style}) => {
+  return <View style={{...styles.darkHeader}}>{children}</View>;
 };
 
 const styles = StyleSheet.create({
@@ -12,5 +12,6 @@ const styles = StyleSheet.create({
     height: 100,
     backgroundColor: THEMES.DARK,
     borderBottomRightRadius: 40,
+    paddingHorizontal: THEMES.PADDING_HORIZONTAL
   },
 });

@@ -16,7 +16,7 @@ export const ForgotPasswordScreen = () => {
   const [changeSecurityConfirm, setChangeSecurityConfirm] = useState(true);
 
   return (
-    <Wrapper>
+    <Wrapper barStyle="dark-content" backgroundColor={THEMES.BACKGROUND}>
       <View style={styles.container}>
         <View style={styles.goBack}>
           <FontAwesome

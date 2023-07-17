@@ -10,7 +10,7 @@ import {
 
 const {width, height} = Dimensions.get('window');
 const itemWidth = (width / 5) * 4;
-const itemHeight = (height / 7) * 2;
+const itemHeight = (height / 8) * 2;
 const padding = (width - itemWidth) / 2;
 const offset = itemWidth;
 

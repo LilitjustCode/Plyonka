@@ -15,7 +15,7 @@ export const RegisterScreen = () => {
   const [changeSecurity, setChangeSecurity] = useState(true);
   const [changeSecurityConfirm, setChangeSecurityConfirm] = useState(true);
   return (
-    <Wrapper>
+    <Wrapper backgroundColor={THEMES.BACKGROUND} barStyle={'dark-content'}>
       <View style={styles.goBack}>
         <FontAwesome
           name={'angle-left'}

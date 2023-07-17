@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import {StyleSheet, View} from 'react-native';
+import {StatusBar, StyleSheet, View} from 'react-native';
 import {THEMES} from '../../components/theme';
 import {MainInput} from '../../components/inputs/inputs';
 import {Wrapper} from '../../components/Wrapper';
@@ -14,7 +14,7 @@ export const LoginScreen = () => {
   const [changeSecurity, setChangeSecurity] = useState(true);
 
   return (
-    <Wrapper>
+    <Wrapper barStyle="dark-content" backgroundColor={THEMES.BACKGROUND}>
       <View style={styles.container}>
         <SemiBoldText style={styles.logo}>LOGO</SemiBoldText>
         <RegularText style={styles.welcome}>Вход в приложение</RegularText>
