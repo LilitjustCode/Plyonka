@@ -12,10 +12,16 @@ import {AuthNavigation} from './src/navigation/AuthNavigation';
 import {THEMES} from './src/components/theme';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
-function App(): JSX.Element {
+function App() {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
-      <NavigationContainer>
+      <NavigationContainer
+        theme={{
+          dark: false,
+          colors: {
+            background: THEMES.BACKGROUND,
+          },
+        }}>
         <AuthNavigation />
       </NavigationContainer>
     </GestureHandlerRootView>

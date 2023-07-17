@@ -11,6 +11,7 @@ export const TabNavigation = () => {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
+        tabBarHideOnKeyboard: true,
         tabBarStyle: {
           backgroundColor: THEMES.DARK,
           borderTopLeftRadius: 40,

@@ -1,12 +1,15 @@
-import React from 'react';
-import {View, StyleSheet, ScrollView, StatusBar} from 'react-native';
+import React, {useCallback, useMemo, useRef, useState} from 'react';
+import {View, StyleSheet, ScrollView, Dimensions} from 'react-native';
 import {Wrapper} from '../../components/Wrapper';
 import {DarkHeader} from '../../components/ui/DarkHeader';
 import {Slider} from '../../components/slider/Slider';
 import {Boxes} from '../../components/renderedBoxes/Boxes';
 import {THEMES} from '../../components/theme';
 import {SearchInput} from '../../components/inputs/searchInput';
-import {Navbar} from '../../components/NavBar';
+import {Navbar} from '../../components/Navbar';
+import {MediumText} from '../../components/ui/texts/MediumText';
+import {BottomSheetModal, BottomSheetModalProvider} from '@gorhom/bottom-sheet';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const data = [
   {
@@ -66,49 +69,111 @@ const data = [
   },
 ];
 
+const bottomSheetHeight = Dimensions.get('window').height;
+
 export const HomeScreen = () => {
-  return (
-    <Wrapper
-      style={styles.wrapper}
-      barStyle="light-content"
-      backgroundColor={THEMES.DARK}>
-      <DarkHeader>
-        <Navbar />
-        <SearchInput
-          placeholder={'Поиск'}
-          placeholderColor={THEMES.LIGHT}
-          keyboardType="web-search"
-          style={{marginTop: 20}}
+  const [headerHeight, setHeaderHeight] = useState(null);
+  const bottomSheetModalRef = useRef(null);
+
+  // variables
+  const snapPoints = [bottomSheetHeight - headerHeight - 50];
+
+  // callbacks
+  const handleSheetChanges = useCallback(index => {
+    console.log('handleSheetChanges', index);
+  }, []);
+
+  const handlePresentModalPress = useCallback(() => {
+    bottomSheetModalRef.current?.present();
+  }, []);
+
+  const handleIndicator = () => {
+    return (
+      <View
+        style={{
+          height: 45,
+          justifyContent: 'center',
+          alignItems: 'flex-end',
+          paddingHorizontal: 20,
+        }}>
+        <AntDesign
+          name="closecircleo"
+          size={25}
+          color={THEMES.DARK}
+          onPress={() => {
+            bottomSheetModalRef.current?.dismiss();
+          }}
         />
-      </DarkHeader>
-      <ScrollView>
-        <Slider />
-        <View style={styles.renderedParent}>
-          <View style={{rowGap: 10}}>
-            {data
-              .filter((_, i) => i % 2 === 0)
-              .map((item, index) => (
-                <Boxes
-                  key={index}
-                  image={item.image}
-                  aspectRatio={item.aspectRatio}
-                />
-              ))}
+      </View>
+    );
+  };
+
+  return (
+    <BottomSheetModalProvider>
+      <Wrapper
+        style={styles.wrapper}
+        barStyle="light-content"
+        backgroundColor={THEMES.DARK}>
+        <DarkHeader
+          onLayout={e => {
+            const {height} = e.nativeEvent.layout;
+            console.log(height);
+            setHeaderHeight(height);
+          }}>
+          <Navbar />
+          <SearchInput
+            placeholder={'Поиск'}
+            placeholderColor={THEMES.LIGHT}
+            keyboardType="web-search"
+            style={styles.search}
+          />
+          <MediumText style={styles.pageTitle}>Коллекции</MediumText>
+        </DarkHeader>
+        <ScrollView>
+          <Slider onPress={handlePresentModalPress} />
+          <View style={styles.renderedParent}>
+            <View style={{rowGap: 10}}>
+              {data
+                .filter((_, i) => i % 2 === 0)
+                .map((item, index) => (
+                  <Boxes
+                    key={index}
+                    image={item.image}
+                    aspectRatio={item.aspectRatio}
+                  />
+                ))}
+            </View>
+            <View style={{rowGap: 10}}>
+              {data
+                .filter((_, i) => i % 2 !== 0)
+                .map((item, index) => (
+                  <Boxes
+                    key={index}
+                    image={item.image}
+                    aspectRatio={item.aspectRatio}
+                  />
+                ))}
+            </View>
           </View>
-          <View style={{rowGap: 10}}>
-            {data
-              .filter((_, i) => i % 2 !== 0)
-              .map((item, index) => (
-                <Boxes
-                  key={index}
-                  image={item.image}
-                  aspectRatio={item.aspectRatio}
-                />
-              ))}
+        </ScrollView>
+        <BottomSheetModal
+          ref={bottomSheetModalRef}
+          snapPoints={snapPoints}
+          // containerStyle={{
+          //   backgroundColor: 'blue',
+          // }}
+          backgroundStyle={{
+            borderTopLeftRadius: 40,
+            borderTopRightRadius: 40,
+          }}
+          handleComponent={handleIndicator}
+          onChange={handleSheetChanges}>
+          <View style={styles.bottomSheetContainer}>
+            <MediumText>Awesome 🎉</MediumText>
           </View>
-        </View>
-      </ScrollView>
-    </Wrapper>
+        </BottomSheetModal>
+      </Wrapper>
+    </BottomSheetModalProvider>
   );
 };
 const styles = StyleSheet.create({
@@ -123,5 +188,20 @@ const styles = StyleSheet.create({
     marginTop: 20,
     columnGap: 10,
     paddingBottom: 40,
+  },
+  search: {
+    marginTop: 20,
+    width: '90%',
+    alignSelf: 'center',
+  },
+  pageTitle: {
+    color: THEMES.LIGHT,
+    fontSize: 20,
+    textAlign: 'center',
+    marginTop: 15,
+  },
+  bottomSheetContainer: {
+    flex: 1,
+    paddingHorizontal: 20,
   },
 });

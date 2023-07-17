@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     height: '100%',
-    color: THEMES.DARK,
+    color: THEMES.LIGHT,
     fontFamily: 'Montserrat-Medium',
   },
   search: {

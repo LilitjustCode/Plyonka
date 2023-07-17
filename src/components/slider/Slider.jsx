@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   View,
+  TouchableOpacity,
 } from 'react-native';
 
 const {width, height} = Dimensions.get('window');
@@ -16,7 +17,7 @@ const offset = itemWidth;
 
 const data = ['violet', 'indigo', 'blue', 'orange'];
 
-export const Slider = () => {
+export const Slider = ({onPress}) => {
   const [activeIndex, setActiveIndex] = useState({current: 0, previous: null});
   const scale = useRef(new Animated.Value(0)).current;
   const scrollX = useRef(new Animated.Value(0)).current;
@@ -83,7 +84,7 @@ export const Slider = () => {
           },
         )}>
         {data.map((x, i) => (
-          <Item key={x} data={x} i={i} scrollX={scrollX} />
+          <Item key={x} data={x} i={i} scrollX={scrollX} onPress={onPress} />
         ))}
       </ScrollView>
       <View style={styles.indicatorContainer}>
@@ -101,14 +102,22 @@ export const Slider = () => {
   );
 };
 
-function Item({i, data, scrollX}) {
+function Item({i, data, scrollX, onPress}) {
   const scale = scrollX.interpolate({
     inputRange: [-offset + i * offset, i * offset, offset + i * offset],
     outputRange: [0.9, 1, 0.9],
   });
   return (
     <Animated.View style={[styles.item, {transform: [{scale}]}]}>
-      <Text>{data}</Text>
+      <TouchableOpacity
+        onPress={onPress}
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <Text>{data}</Text>
+      </TouchableOpacity>
     </Animated.View>
   );
 }

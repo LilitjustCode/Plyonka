@@ -82,6 +82,12 @@ android {
         versionName "1.0"
     }
     signingConfigs {
+        release {
+            storeFile file('Plyonka.keystore')
+            storePassword 111111
+            keyAlias 'Plyonka'
+            keyPassword 111111
+        }
         debug {
             storeFile file('debug.keystore')
             storePassword 'android'
