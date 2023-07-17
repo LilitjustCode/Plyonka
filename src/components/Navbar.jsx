@@ -5,20 +5,24 @@ import {THEMES} from './theme';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {MediumText} from './ui/texts/MediumText';
 
-export const Navbar = ({}) => {
+export const Navbar = ({backIcon}) => {
   return (
     <View style={styles.bar}>
-      <TouchableOpacity style={styles.backButton}>
-        <FontAwesome
-          name={'angle-left'}
-          color={THEMES.LIGHT}
-          size={26}
-          onPress={() => {
-            navigation.goBack();
-          }}
-        />
-        <MediumText style={styles.backText}>Назад</MediumText>
-      </TouchableOpacity>
+      {backIcon ? (
+        <TouchableOpacity style={styles.backButton}>
+          <FontAwesome
+            name={'angle-left'}
+            color={THEMES.LIGHT}
+            size={26}
+            onPress={() => {
+              navigation.goBack();
+            }}
+          />
+          <MediumText style={styles.backText}>Назад</MediumText>
+        </TouchableOpacity>
+      ) : (
+        <View style={{width: '20%'}}></View>
+      )}
 
       <SemiBoldText style={styles.text}>LOGO</SemiBoldText>
 

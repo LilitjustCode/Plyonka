@@ -1,6 +1,9 @@
 apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
+
+
 /**
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need to apply any configuration, just uncomment the lines you need.
@@ -84,9 +87,9 @@ android {
     signingConfigs {
         release {
             storeFile file('Plyonka.keystore')
-            storePassword 111111
+            storePassword '111111'
             keyAlias 'Plyonka'
-            keyPassword 111111
+            keyPassword '111111'
         }
         debug {
             storeFile file('debug.keystore')

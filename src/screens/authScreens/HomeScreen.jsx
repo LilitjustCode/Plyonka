@@ -1,5 +1,5 @@
 import React, {useCallback, useMemo, useRef, useState} from 'react';
-import {View, StyleSheet, ScrollView, Dimensions} from 'react-native';
+import {View, StyleSheet, ScrollView, Dimensions, Image} from 'react-native';
 import {Wrapper} from '../../components/Wrapper';
 import {DarkHeader} from '../../components/ui/DarkHeader';
 import {Slider} from '../../components/slider/Slider';
@@ -10,6 +10,8 @@ import {Navbar} from '../../components/Navbar';
 import {MediumText} from '../../components/ui/texts/MediumText';
 import {BottomSheetModal, BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {SemiBoldText} from '../../components/ui/texts/SemiBoldText';
+import {LightText} from '../../components/ui/texts/LightText';
 
 const data = [
   {
@@ -169,7 +171,17 @@ export const HomeScreen = () => {
           handleComponent={handleIndicator}
           onChange={handleSheetChanges}>
           <View style={styles.bottomSheetContainer}>
-            <MediumText>Awesome 🎉</MediumText>
+            <Image
+              source={require('../../../assets/images/Rectangle1195.png')}
+              style={{width: '100%', height: 302, borderRadius: 25}}
+            />
+            <SemiBoldText style={styles.bottomSheetTitle}>
+              Коллекции
+            </SemiBoldText>
+            <LightText style={styles.bottomSheetText}>
+              При создании генератора мы использовали небезизвестный
+              универсальный код речей. Текст генерируется...
+            </LightText>
           </View>
         </BottomSheetModal>
       </Wrapper>
@@ -203,5 +215,15 @@ const styles = StyleSheet.create({
   bottomSheetContainer: {
     flex: 1,
     paddingHorizontal: 20,
+  },
+  bottomSheetTitle: {
+    marginTop: 30,
+    color: THEMES.DARK,
+    fontSize: 20,
+  },
+  bottomSheetText: {
+    marginTop: 40,
+    color: THEMES.DARK,
+    fontSize: 20,
   },
 });

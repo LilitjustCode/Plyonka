@@ -3,8 +3,11 @@ import React from 'react';
 import {HomeScreen} from '../screens/authScreens/HomeScreen';
 import {THEMES} from '../components/theme';
 import {CameraInBar, CatalogIcon, Heart} from '../components/includeSvg';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {CatalogScreen} from '../screens/authScreens/CatalogScreen';
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 export const TabNavigation = () => {
   return (
@@ -19,8 +22,8 @@ export const TabNavigation = () => {
         },
       }}>
       <Tab.Screen
-        name="HomeScreen"
-        component={HomeScreen}
+        name="CatalogStack"
+        component={CatalogStack}
         options={{
           tabBarIcon: () => {
             return <CatalogIcon />;
@@ -62,5 +65,17 @@ export const TabNavigation = () => {
         }}
       />
     </Tab.Navigator>
+  );
+};
+
+const CatalogStack = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Stack.Screen name="CatalogScreen" component={CatalogScreen} />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+    </Stack.Navigator>
   );
 };
