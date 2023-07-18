@@ -1,12 +1,12 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, Text} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import {THEMES} from '../../theme';
 import {MediumText} from '../texts/MediumText';
 
-export const DarkButton = ({children, onPress, style}) => {
+export const DarkButton = ({children, onPress, style, textStyle}) => {
   return (
     <TouchableOpacity style={{...styles.button, ...style}} onPress={onPress}>
-      <MediumText style={styles.text}>{children}</MediumText>
+      <MediumText style={{...styles.text, ...textStyle}}>{children}</MediumText>
     </TouchableOpacity>
   );
 };

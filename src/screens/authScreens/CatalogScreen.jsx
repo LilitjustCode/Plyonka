@@ -1,15 +1,15 @@
-import React, {useCallback, useMemo, useRef, useState} from 'react';
-import {View, StyleSheet, ScrollView, Dimensions, Image} from 'react-native';
+import React, {useState} from 'react';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {Wrapper} from '../../components/Wrapper';
 import {DarkHeader} from '../../components/ui/DarkHeader';
-import {Slider} from '../../components/slider/Slider';
-import {Boxes} from '../../components/renderedBoxes/Boxes';
 import {THEMES} from '../../components/theme';
 import {SearchInput} from '../../components/inputs/searchInput';
 import {Navbar} from '../../components/Navbar';
 import {MediumText} from '../../components/ui/texts/MediumText';
-import {BottomSheetModal, BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import {LightText} from '../../components/ui/texts/LightText';
+import {ProductItems} from '../../components/renderedBoxes/ProductItems';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Feather from 'react-native-vector-icons/Feather';
 
 const data = [
   {
@@ -70,6 +70,7 @@ const data = [
 ];
 
 export const CatalogScreen = () => {
+  const [pageStyle, setPageStyle] = useState(1);
   return (
     <Wrapper
       style={styles.wrapper}
@@ -90,21 +91,40 @@ export const CatalogScreen = () => {
         <MediumText style={styles.pageTitle}>Каталог товаров</MediumText>
       </DarkHeader>
 
-      <ScrollView>
-        <View style={styles.renderedParent}>
-          <View style={styles.changeStylePageParent}>
-            <LightText style={styles.textChangeTab}>
-              Пленки для окутывания
-            </LightText>
-            <View
-              style={{height: '75%', width: 0.5, backgroundColor: THEMES.DARK}}
+      <View style={styles.renderedParent}>
+        <View style={styles.changeStylePageParent}>
+          <LightText style={styles.textChangeTab}>
+            Пленки для окутывания
+          </LightText>
+          <View
+            style={{height: '70%', width: 0.5, backgroundColor: THEMES.DARK}}
+          />
+          <LightText style={styles.textChangeTab}>Вид страницы</LightText>
+          <View style={styles.changeTabRightSideParent}>
+            <Feather
+              name="grid"
+              size={24}
+              color={pageStyle == 0 ? 'black' : 'grey'}
+              onPress={() => setPageStyle(0)}
             />
-            <View style={styles.changeTabRightSideParent}>
-              <LightText style={styles.textChangeTab}>Вид страницы</LightText>
-            </View>
+            <MaterialCommunityIcons
+              name="format-list-bulleted"
+              size={24}
+              color={pageStyle == 1 ? 'black' : 'grey'}
+              onPress={() => setPageStyle(1)}
+            />
           </View>
         </View>
-      </ScrollView>
+        <View style={styles.scrollContainer}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={styles.renderedItems}>
+              {new Array(10).fill(null).map((_, i) => (
+                <ProductItems key={i} pageStyle={pageStyle} />
+              ))}
+            </View>
+          </ScrollView>
+        </View>
+      </View>
     </Wrapper>
   );
 };
@@ -119,7 +139,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginTop: 20,
     columnGap: 10,
-    paddingBottom: 40,
+
+    flex: 1,
   },
   search: {
     marginTop: 20,
@@ -140,11 +161,24 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     paddingHorizontal: 13,
+    marginBottom: 20,
   },
   textChangeTab: {
-    fontSize: 15,
+    fontSize: 13,
   },
   changeTabRightSideParent: {
     flexDirection: 'row',
+  },
+  renderedItems: {
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    rowGap: 10,
+    justifyContent: 'space-between',
+    flex: 1,
+    paddingBottom: 45,
+  },
+  scrollContainer: {
+    flex: 1,
+    paddingBottom: 45,
   },
 });

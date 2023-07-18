@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, TextInput, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
 import {THEMES} from '../theme';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import {MiFilter} from '../includeSvg';
@@ -12,11 +12,20 @@ export const SearchInput = ({
   onFocus,
   onPress,
 }) => {
+  // const animation = useSharedValue(0);
+  //
+  // const animatedStyle = useAnimatedStyle(() => {
+  //   return {
+  //     height: animation.value,
+  //   };
+  // });
+
   return (
     <View style={{...styles.parent, ...style}}>
-      <TouchableOpacity style={styles.search} onPress={onPress}>
+      <TouchableOpacity style={styles.search} onPress={() => {}}>
         <Fontisto name="search" size={22} color={THEMES.LIGHT} />
       </TouchableOpacity>
+
       <TextInput
         style={styles.input}
         placeholder={placeholder}
@@ -24,9 +33,25 @@ export const SearchInput = ({
         keyboardType={keyboardType}
         onFocus={onFocus}
       />
-      <TouchableOpacity style={styles.filter} onPress={onPress}>
+
+      <TouchableOpacity
+        style={styles.filter}
+        onPress={() => {
+          // animation.value = withRepeat(withTiming(10), 6, true);
+        }}>
         <MiFilter />
       </TouchableOpacity>
+      {/*<Animated.View*/}
+      {/*  style={[*/}
+      {/*    styles.dropDown,*/}
+      {/*    {*/}
+      {/*      // Bind opacity to animated value*/}
+      {/*      // transform: [{scaleY: fadeAnim}],*/}
+      {/*      height: animatedStyle,*/}
+      {/*    },*/}
+      {/*  ]}>*/}
+      {/*  <MediumText style={styles.fadingText}>Fading View!</MediumText>*/}
+      {/*</Animated.View>*/}
     </View>
   );
 };
@@ -41,7 +66,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    overflow: 'hidden',
+    // overflow: 'hidden',
+    position: 'relative',
+    zIndex: 10,
   },
   input: {
     flex: 1,
@@ -61,5 +88,13 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  dropDown: {
+    backgroundColor: 'red',
+    position: 'absolute',
+    right: 0,
+    width: 200,
+    top: 40,
+    // zIndex: 10,
   },
 });
