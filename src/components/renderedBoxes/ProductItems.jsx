@@ -81,7 +81,7 @@ export const ProductItems = ({pageStyle}) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: THEMES.LIGHT,
+    // backgroundColor: THEMES.LIGHT,
     borderRadius: 10,
   },
   header: {

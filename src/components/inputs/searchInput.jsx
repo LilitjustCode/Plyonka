@@ -3,6 +3,12 @@ import {StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
 import {THEMES} from '../theme';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import {MiFilter} from '../includeSvg';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
+import {MediumText} from '../ui/texts/MediumText';
 
 export const SearchInput = ({
   placeholder,
@@ -12,13 +18,15 @@ export const SearchInput = ({
   onFocus,
   onPress,
 }) => {
-  // const animation = useSharedValue(0);
-  //
-  // const animatedStyle = useAnimatedStyle(() => {
-  //   return {
-  //     height: animation.value,
-  //   };
-  // });
+  const animation = useSharedValue({height: 0});
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      height: withTiming(animation.value.height, {
+        duration: 200,
+      }),
+    };
+  });
 
   return (
     <View style={{...styles.parent, ...style}}>
@@ -37,21 +45,17 @@ export const SearchInput = ({
       <TouchableOpacity
         style={styles.filter}
         onPress={() => {
-          // animation.value = withRepeat(withTiming(10), 6, true);
+          if (animation.value.height > 0) {
+            animation.value = {height: 0};
+          } else {
+            animation.value = {height: 300};
+          }
         }}>
         <MiFilter />
       </TouchableOpacity>
-      {/*<Animated.View*/}
-      {/*  style={[*/}
-      {/*    styles.dropDown,*/}
-      {/*    {*/}
-      {/*      // Bind opacity to animated value*/}
-      {/*      // transform: [{scaleY: fadeAnim}],*/}
-      {/*      height: animatedStyle,*/}
-      {/*    },*/}
-      {/*  ]}>*/}
-      {/*  <MediumText style={styles.fadingText}>Fading View!</MediumText>*/}
-      {/*</Animated.View>*/}
+      <Animated.View style={[styles.dropDown, animatedStyle]}>
+        <MediumText style={styles.fadingText}>Fading View!</MediumText>
+      </Animated.View>
     </View>
   );
 };
@@ -88,13 +92,15 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
+    borderTopRightRadius: 5,
+    borderBottomRightRadius: 5,
   },
   dropDown: {
-    backgroundColor: 'red',
+    backgroundColor: THEMES.LIGHT,
     position: 'absolute',
     right: 0,
     width: 200,
     top: 40,
-    // zIndex: 10,
+    zIndex: 10,
   },
 });
