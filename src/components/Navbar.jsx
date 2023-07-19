@@ -2,18 +2,17 @@ import React from 'react';
 import {StyleSheet, View, TouchableOpacity, Image} from 'react-native';
 import {SemiBoldText} from './ui/texts/SemiBoldText';
 import {THEMES} from './theme';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {MediumText} from './ui/texts/MediumText';
+import {AngleLeftWhite} from './includeSvg';
+import {useNavigation} from '@react-navigation/native';
 
 export const Navbar = ({backIcon}) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.bar}>
       {backIcon ? (
         <TouchableOpacity style={styles.backButton}>
-          <FontAwesome
-            name={'angle-left'}
-            color={THEMES.LIGHT}
-            size={26}
+          <AngleLeftWhite
             onPress={() => {
               navigation.goBack();
             }}
@@ -30,7 +29,7 @@ export const Navbar = ({backIcon}) => {
         <TouchableOpacity>
           <Image
             source={require('../../assets/images/ChatIconNav.png')}
-            style={{tintColor: THEMES.LIGHT}}
+            style={{tintColor: THEMES.LIGHT, width: 25}}
           />
         </TouchableOpacity>
 

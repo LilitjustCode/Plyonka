@@ -9,9 +9,9 @@ import {SearchInput} from '../../components/inputs/searchInput';
 import {Navbar} from '../../components/Navbar';
 import {MediumText} from '../../components/ui/texts/MediumText';
 import {BottomSheetModal, BottomSheetModalProvider} from '@gorhom/bottom-sheet';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import {SemiBoldText} from '../../components/ui/texts/SemiBoldText';
 import {LightText} from '../../components/ui/texts/LightText';
+import {CloseCircle} from '../../components/includeSvg';
 
 const data = [
   {
@@ -98,10 +98,7 @@ export const HomeScreen = () => {
           alignItems: 'flex-end',
           paddingHorizontal: 20,
         }}>
-        <AntDesign
-          name="closecircleo"
-          size={25}
-          color={THEMES.DARK}
+        <CloseCircle
           onPress={() => {
             bottomSheetModalRef.current?.dismiss();
           }}

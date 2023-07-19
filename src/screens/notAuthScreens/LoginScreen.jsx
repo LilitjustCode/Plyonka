@@ -18,11 +18,7 @@ export const LoginScreen = () => {
       <View style={styles.container}>
         <SemiBoldText style={styles.logo}>LOGO</SemiBoldText>
         <RegularText style={styles.welcome}>Вход в приложение</RegularText>
-        <RegularText
-          style={styles.forgot}
-          onPress={() => navigation.navigate('ForgotPasswordScreen')}>
-          Забыли пароль ?
-        </RegularText>
+
         <MainInput
           placeholder={'Введите логин/Номер телефона'}
           placeholderColor={THEMES.PLACEHOLDER}
@@ -35,6 +31,12 @@ export const LoginScreen = () => {
           secureTextEntry={changeSecurity}
           changeSecurity={() => setChangeSecurity(!changeSecurity)}
         />
+        <RegularText
+          style={styles.forgot}
+          onPress={() => navigation.navigate('ForgotPasswordScreen')}>
+          Забыли пароль ?
+        </RegularText>
+
         <DarkButton>Войти</DarkButton>
         <LightButton
           style={styles.lightButton}

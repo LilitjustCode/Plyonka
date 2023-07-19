@@ -1,8 +1,13 @@
 import React from 'react';
-import {StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {THEMES} from '../theme';
-import Fontisto from 'react-native-vector-icons/Fontisto';
-import {MiFilter} from '../includeSvg';
+import {MiFilter, Search} from '../includeSvg';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -31,7 +36,7 @@ export const SearchInput = ({
   return (
     <View style={{...styles.parent, ...style}}>
       <TouchableOpacity style={styles.search} onPress={() => {}}>
-        <Fontisto name="search" size={22} color={THEMES.LIGHT} />
+        <Search />
       </TouchableOpacity>
 
       <TextInput
@@ -54,7 +59,13 @@ export const SearchInput = ({
         <MiFilter />
       </TouchableOpacity>
       <Animated.View style={[styles.dropDown, animatedStyle]}>
-        <MediumText style={styles.fadingText}>Fading View!</MediumText>
+        <ScrollView>
+          {new Array(10).fill(null).map((x, i) => (
+            <TouchableOpacity key={i} style={styles.filterItems}>
+              <MediumText style={styles.fadingText}>Fading View!</MediumText>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
       </Animated.View>
     </View>
   );
@@ -102,5 +113,11 @@ const styles = StyleSheet.create({
     width: 200,
     top: 40,
     zIndex: 10,
+  },
+  filterItems: {
+    borderBottomWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 50,
   },
 });

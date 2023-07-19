@@ -7,8 +7,7 @@ import {SemiBoldText} from '../../components/ui/texts/SemiBoldText';
 import {DarkButton} from '../../components/ui/buttons/DarkButton';
 import {RegularText} from '../../components/ui/texts/RegularText';
 import {useState} from 'react';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {AngleLeftBlack} from '../../components/includeSvg';
 
 export const ForgotPasswordScreen = () => {
   const navigation = useNavigation();
@@ -19,10 +18,7 @@ export const ForgotPasswordScreen = () => {
     <Wrapper barStyle="dark-content" backgroundColor={THEMES.BACKGROUND}>
       <View style={styles.container}>
         <View style={styles.goBack}>
-          <FontAwesome
-            name={'angle-left'}
-            color={THEMES.DARK}
-            size={26}
+          <AngleLeftBlack
             onPress={() => {
               navigation.goBack();
             }}

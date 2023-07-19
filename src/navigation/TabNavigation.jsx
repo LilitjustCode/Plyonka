@@ -50,7 +50,7 @@ export const TabNavigation = () => {
         }}
       />
       <Tab.Screen
-        name="Homea"
+        name="Hom"
         component={HomeScreen}
         options={{
           tabBarIcon: () => {

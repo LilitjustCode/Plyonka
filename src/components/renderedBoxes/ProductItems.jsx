@@ -1,5 +1,11 @@
 import React from 'react';
-import {Dimensions, Image, StyleSheet, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {MediumText} from '../ui/texts/MediumText';
 import {THEMES} from '../theme';
 import {DarkButton} from '../ui/buttons/DarkButton';
@@ -28,8 +34,13 @@ export const ProductItems = ({pageStyle}) => {
               columnGap: pageStyle == 1 ? 10 : 6,
             },
           ]}>
-          <CameraSmall onPress={() => alert('Camera')} />
-          <HeartDark onPress={() => alert('Heart')} />
+          <TouchableOpacity onPress={() => alert('Camera')}>
+            <CameraSmall />
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => alert('Heart')}>
+            <HeartDark />
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -45,7 +56,7 @@ export const ProductItems = ({pageStyle}) => {
           style={{
             width: '100%',
             height: '100%',
-            resizeMode: 'cover',
+            resizeMode: 'contain',
           }}
         />
         <View
@@ -81,7 +92,7 @@ export const ProductItems = ({pageStyle}) => {
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: THEMES.LIGHT,
+    backgroundColor: THEMES.LIGHT,
     borderRadius: 10,
   },
   header: {

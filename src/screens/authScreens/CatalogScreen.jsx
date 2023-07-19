@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Wrapper} from '../../components/Wrapper';
 import {DarkHeader} from '../../components/ui/DarkHeader';
 import {THEMES} from '../../components/theme';
@@ -8,8 +8,7 @@ import {Navbar} from '../../components/Navbar';
 import {MediumText} from '../../components/ui/texts/MediumText';
 import {LightText} from '../../components/ui/texts/LightText';
 import {ProductItems} from '../../components/renderedBoxes/ProductItems';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Feather from 'react-native-vector-icons/Feather';
+import {BiGrid, FormatListBulleted} from '../../components/includeSvg';
 
 const data = [
   {
@@ -81,7 +80,7 @@ export const CatalogScreen = () => {
           const {height} = e.nativeEvent.layout;
           console.log(height);
         }}>
-        <Navbar />
+        <Navbar backIcon={true} />
         <SearchInput
           placeholder={'Поиск'}
           placeholderColor={THEMES.LIGHT}
@@ -101,18 +100,13 @@ export const CatalogScreen = () => {
           />
           <LightText style={styles.textChangeTab}>Вид страницы</LightText>
           <View style={styles.changeTabRightSideParent}>
-            <Feather
-              name="grid"
-              size={24}
-              color={pageStyle == 0 ? 'black' : 'grey'}
-              onPress={() => setPageStyle(0)}
-            />
-            <MaterialCommunityIcons
-              name="format-list-bulleted"
-              size={24}
-              color={pageStyle == 1 ? 'black' : 'grey'}
-              onPress={() => setPageStyle(1)}
-            />
+            <TouchableOpacity onPress={() => setPageStyle(0)}>
+              <BiGrid color={pageStyle == 0 ? 'black' : 'grey'} />
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => setPageStyle(1)}>
+              <FormatListBulleted color={pageStyle == 1 ? 'black' : 'grey'} />
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.scrollContainer}>

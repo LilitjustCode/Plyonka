@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, TextInput, View, TouchableOpacity} from 'react-native';
 import {THEMES} from '../theme';
-import Feather from 'react-native-vector-icons/Feather';
+import {Eye, EyeOff} from '../includeSvg';
 
 export const MainInput = ({
   placeholder,
@@ -25,11 +25,7 @@ export const MainInput = ({
       />
       {password && (
         <TouchableOpacity style={styles.eye} onPress={changeSecurity}>
-          {secureTextEntry ? (
-            <Feather name="eye-off" color={THEMES.PLACEHOLDER} size={24} />
-          ) : (
-            <Feather name="eye" color={THEMES.PLACEHOLDER} size={24} />
-          )}
+          {secureTextEntry ? <EyeOff /> : <Eye />}
         </TouchableOpacity>
       )}
     </View>
@@ -53,6 +49,7 @@ const styles = StyleSheet.create({
     height: '100%',
     paddingLeft: 30,
     color: THEMES.DARK,
+    fontFamily: 'Montserrat-Regular',
   },
   eye: {
     marginRight: 10,

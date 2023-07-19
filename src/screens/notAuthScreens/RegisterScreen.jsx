@@ -1,14 +1,14 @@
+import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {Dimensions, StyleSheet, View} from 'react-native';
+import {Dimensions, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {THEMES} from '../../components/theme';
 import {MainInput} from '../../components/inputs/inputs';
 import {Wrapper} from '../../components/Wrapper';
 import {SemiBoldText} from '../../components/ui/texts/SemiBoldText';
 import {DarkButton} from '../../components/ui/buttons/DarkButton';
 import {RegularText} from '../../components/ui/texts/RegularText';
-import {useState} from 'react';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {AngleLeftBlack} from '../../components/includeSvg';
 
 export const RegisterScreen = () => {
   const navigation = useNavigation();
@@ -17,14 +17,12 @@ export const RegisterScreen = () => {
   return (
     <Wrapper backgroundColor={THEMES.BACKGROUND} barStyle={'dark-content'}>
       <View style={styles.goBack}>
-        <FontAwesome
-          name={'angle-left'}
-          color={THEMES.DARK}
-          size={26}
+        <TouchableOpacity
           onPress={() => {
             navigation.goBack();
-          }}
-        />
+          }}>
+          <AngleLeftBlack />
+        </TouchableOpacity>
       </View>
       <KeyboardAwareScrollView
         showsVerticalScrollIndicator={false}
