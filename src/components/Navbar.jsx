@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, TouchableOpacity, Image} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {SemiBoldText} from './ui/texts/SemiBoldText';
 import {THEMES} from './theme';
 import {MediumText} from './ui/texts/MediumText';
@@ -11,16 +11,16 @@ export const Navbar = ({backIcon}) => {
   return (
     <View style={styles.bar}>
       {backIcon ? (
-        <TouchableOpacity style={styles.backButton}>
-          <AngleLeftWhite
-            onPress={() => {
-              navigation.goBack();
-            }}
-          />
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => {
+            navigation.goBack();
+          }}>
+          <AngleLeftWhite />
           <MediumText style={styles.backText}>Назад</MediumText>
         </TouchableOpacity>
       ) : (
-        <View style={{width: '20%'}}></View>
+        <View style={{width: '20%'}} />
       )}
 
       <SemiBoldText style={styles.text}>LOGO</SemiBoldText>

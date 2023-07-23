@@ -5,6 +5,7 @@ import {THEMES} from '../components/theme';
 import {CameraInBar, CatalogIcon, Heart} from '../components/includeSvg';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {CatalogScreen} from '../screens/authScreens/CatalogScreen';
+import {ProductSingleScreen} from '../screens/authScreens/ProductSingleScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -73,9 +74,16 @@ const CatalogStack = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
+        animation: 'slide_from_right',
+        gestureDirection: 'horizontal',
+        gestureEnabled: true,
       }}>
       <Stack.Screen name="CatalogScreen" component={CatalogScreen} />
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen
+        name="ProductSingleScreen"
+        component={ProductSingleScreen}
+      />
     </Stack.Navigator>
   );
 };

@@ -13,7 +13,7 @@ import {CameraSmall, HeartDark} from '../includeSvg';
 
 const innerWidth = Dimensions.get('window').width - THEMES.PADDING_HORIZONTAL;
 
-export const ProductItems = ({pageStyle}) => {
+export const ProductItems = ({pageStyle, onPress}) => {
   return (
     <View
       style={[
@@ -72,7 +72,8 @@ export const ProductItems = ({pageStyle}) => {
             }}
             textStyle={{
               fontSize: pageStyle == 1 ? 20 : 12,
-            }}>
+            }}
+            onPress={onPress}>
             Подробнее
           </DarkButton>
         </View>

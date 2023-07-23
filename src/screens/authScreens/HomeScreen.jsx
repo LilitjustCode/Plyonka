@@ -1,5 +1,5 @@
-import React, {useCallback, useMemo, useRef, useState} from 'react';
-import {View, StyleSheet, ScrollView, Dimensions, Image} from 'react-native';
+import React, {useCallback, useRef, useState} from 'react';
+import {Dimensions, Image, ScrollView, StyleSheet, View} from 'react-native';
 import {Wrapper} from '../../components/Wrapper';
 import {DarkHeader} from '../../components/ui/DarkHeader';
 import {Slider} from '../../components/slider/Slider';
@@ -96,7 +96,7 @@ export const HomeScreen = () => {
           height: 45,
           justifyContent: 'center',
           alignItems: 'flex-end',
-          paddingHorizontal: 20,
+          paddingHorizontal: THEMES.PADDING_HORIZONTAL_20,
         }}>
         <CloseCircle
           onPress={() => {
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
+    paddingHorizontal: THEMES.PADDING_HORIZONTAL_20,
     marginTop: 20,
     columnGap: 10,
     paddingBottom: 40,
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
   },
   bottomSheetContainer: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: THEMES.PADDING_HORIZONTAL_20,
   },
   bottomSheetTitle: {
     marginTop: 30,

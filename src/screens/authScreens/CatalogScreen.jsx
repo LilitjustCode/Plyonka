@@ -9,6 +9,7 @@ import {MediumText} from '../../components/ui/texts/MediumText';
 import {LightText} from '../../components/ui/texts/LightText';
 import {ProductItems} from '../../components/renderedBoxes/ProductItems';
 import {BiGrid, FormatListBulleted} from '../../components/includeSvg';
+import {useNavigation} from '@react-navigation/native';
 
 const data = [
   {
@@ -69,6 +70,7 @@ const data = [
 ];
 
 export const CatalogScreen = () => {
+  const navigation = useNavigation();
   const [pageStyle, setPageStyle] = useState(1);
   return (
     <Wrapper
@@ -113,7 +115,11 @@ export const CatalogScreen = () => {
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.renderedItems}>
               {new Array(10).fill(null).map((_, i) => (
-                <ProductItems key={i} pageStyle={pageStyle} />
+                <ProductItems
+                  key={i}
+                  pageStyle={pageStyle}
+                  onPress={() => navigation.navigate('ProductSingleScreen')}
+                />
               ))}
             </View>
           </ScrollView>
@@ -130,7 +136,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
+    paddingHorizontal: THEMES.PADDING_HORIZONTAL_20,
     marginTop: 20,
     columnGap: 10,
 

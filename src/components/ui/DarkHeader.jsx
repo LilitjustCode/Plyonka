@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: THEMES.DARK,
     borderBottomRightRadius: 40,
-    paddingHorizontal: 20,
+    paddingHorizontal: THEMES.PADDING_HORIZONTAL_20,
     paddingVertical: 20,
     zIndex: 10,
   },
