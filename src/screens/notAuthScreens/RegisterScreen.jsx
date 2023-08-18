@@ -1,6 +1,12 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {Dimensions, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  ScrollView,
+} from 'react-native';
 import {THEMES} from '../../components/theme';
 import {MainInput} from '../../components/inputs/inputs';
 import {Wrapper} from '../../components/Wrapper';
@@ -9,6 +15,7 @@ import {DarkButton} from '../../components/ui/buttons/DarkButton';
 import {RegularText} from '../../components/ui/texts/RegularText';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {AngleLeftBlack} from '../../components/includeSvg';
+import {MediumText} from '../../components/ui/texts/MediumText';
 
 export const RegisterScreen = () => {
   const navigation = useNavigation();
@@ -16,15 +23,15 @@ export const RegisterScreen = () => {
   const [changeSecurityConfirm, setChangeSecurityConfirm] = useState(true);
   return (
     <Wrapper backgroundColor={THEMES.BACKGROUND} barStyle={'dark-content'}>
-      <View style={styles.goBack}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.goBack();
-          }}>
-          <AngleLeftBlack />
-        </TouchableOpacity>
-      </View>
-      <KeyboardAwareScrollView
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => {
+          navigation.goBack();
+        }}>
+        <AngleLeftBlack />
+        <MediumText style={styles.backText}>Назад</MediumText>
+      </TouchableOpacity>
+      <ScrollView
         showsVerticalScrollIndicator={false}
         scrollEnabled={true}
         contentContainerStyle={{
@@ -73,12 +80,13 @@ export const RegisterScreen = () => {
           }
         />
         <DarkButton
+          style={{borderRadius: 10}}
           onPress={() => {
             navigation.navigate('TabNavigation');
           }}>
           Создать
         </DarkButton>
-      </KeyboardAwareScrollView>
+      </ScrollView>
     </Wrapper>
   );
 };
@@ -111,5 +119,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     justifyContent: 'flex-start',
     width: '100%',
+  },
+  backButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    position: 'absolute',
+    top: 25,
+    left: 15,
   },
 });

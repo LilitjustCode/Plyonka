@@ -7,7 +7,11 @@ import {
   Text,
   View,
   TouchableOpacity,
+  ImageBackground,
+  Image,
 } from 'react-native';
+import {SemiBoldText} from '../ui/texts/SemiBoldText';
+import {LightText} from '../ui/texts/LightText';
 
 const {width, height} = Dimensions.get('window');
 const itemWidth = (width / 5) * 4;
@@ -108,17 +112,41 @@ function Item({i, data, scrollX, onPress}) {
     outputRange: [0.9, 1, 0.9],
   });
   return (
-    <Animated.View style={[styles.item, {transform: [{scale}]}]}>
-      <TouchableOpacity
-        onPress={onPress}
-        style={{
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <Text>{data}</Text>
-      </TouchableOpacity>
-    </Animated.View>
+    <TouchableOpacity activeOpacity={1} onPress={onPress}>
+      <Animated.View style={[styles.item, {transform: [{scale}]}]}>
+        <Image
+          // resizeMode="contain"
+          onPress={onPress}
+          style={{
+            width: '100%',
+            height: '100%',
+            borderRadius: 25,
+            position: 'relative',
+          }}
+          source={require('../../../assets/images/Rectangle1195.png')}
+        />
+        {/*  */}
+        <View style={{position: 'absolute', top: 25, paddingHorizontal: 28}}>
+          <SemiBoldText style={styles.bottomSheetTitle}>Коллекции</SemiBoldText>
+          <LightText style={styles.bottomSheetText}>
+            При создании генератора мы использовали небезизвестный универсальный
+            код речей. Текст генерируется...
+          </LightText>
+          <View>
+            <Image
+              style={{
+                width: 35,
+                height: 35,
+                position: 'absolute',
+                bottom: -35,
+                right: -20,
+              }}
+              source={require('../../../assets/images/arrow-right.png')}
+            />
+          </View>
+        </View>
+      </Animated.View>
+    </TouchableOpacity>
   );
 }
 
@@ -138,11 +166,11 @@ const styles = StyleSheet.create({
   item: {
     height: itemHeight,
     width: itemWidth,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 10,
+    // alignItems: 'center',
+    // justifyContent: 'center',
     backgroundColor: '#fff',
     elevation: 5,
+    borderRadius: 25,
   },
   bgColor: {
     position: 'absolute',
@@ -162,5 +190,16 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginHorizontal: 3,
     backgroundColor: '#444',
+  },
+  bottomSheetTitle: {
+    color: '#FFF',
+    fontSize: 20,
+    fontFamily: 'Montserrat-Medium',
+  },
+  bottomSheetText: {
+    fontFamily: 'Montserrat-Light',
+    color: '#FFF',
+    fontSize: 15,
+    marginTop: 25,
   },
 });

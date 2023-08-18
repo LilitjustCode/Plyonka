@@ -8,12 +8,7 @@ import {Navbar} from '../../components/Navbar';
 import {MediumText} from '../../components/ui/texts/MediumText';
 import {LightText} from '../../components/ui/texts/LightText';
 import {ProductItems} from '../../components/renderedBoxes/ProductItems';
-import {
-  BiGrid,
-  FormatListBulleted,
-  GrayFormatListBulleted,
-  BoldBiGrid,
-} from '../../components/includeSvg';
+import {BiGrid, FormatListBulleted} from '../../components/includeSvg';
 import {useNavigation} from '@react-navigation/native';
 
 const data = [
@@ -74,7 +69,7 @@ const data = [
   },
 ];
 
-export const CatalogScreen = () => {
+export const FavoriteScreen = () => {
   const navigation = useNavigation();
   const [pageStyle, setPageStyle] = useState(1);
   return (
@@ -94,36 +89,10 @@ export const CatalogScreen = () => {
           keyboardType="web-search"
           style={styles.search}
         />
-        <MediumText style={styles.pageTitle}>Каталог товаров</MediumText>
+        <MediumText style={styles.pageTitle}>Избранные</MediumText>
       </DarkHeader>
 
       <View style={styles.renderedParent}>
-        <View style={styles.changeStylePageParent}>
-          <LightText style={styles.textChangeTab}>
-            Пленки для окутывания
-          </LightText>
-          <View
-            style={{height: '70%', width: 0.5, backgroundColor: '#0B0C10'}}
-          />
-          <LightText style={styles.textChangeTab}>Вид страницы</LightText>
-          <View style={styles.changeTabRightSideParent}>
-            <TouchableOpacity
-              style={[pageStyle == 0 && {marginRight: 4, marginTop: 4}]}
-              onPress={() => setPageStyle(0)}>
-              {pageStyle == 0 ? <BoldBiGrid /> : <BiGrid />}
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              // style={[pageStyle != 1 && {marginTop: 4}]}
-              onPress={() => setPageStyle(1)}>
-              {pageStyle == 1 ? (
-                <FormatListBulleted />
-              ) : (
-                <GrayFormatListBulleted />
-              )}
-            </TouchableOpacity>
-          </View>
-        </View>
         <View style={styles.scrollContainer}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.renderedItems}>
@@ -181,7 +150,6 @@ const styles = StyleSheet.create({
   },
   changeTabRightSideParent: {
     flexDirection: 'row',
-    marginRight: 4,
   },
   renderedItems: {
     flexWrap: 'wrap',

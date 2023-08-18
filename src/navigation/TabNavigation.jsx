@@ -6,6 +6,9 @@ import {CameraInBar, CatalogIcon, Heart} from '../components/includeSvg';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {CatalogScreen} from '../screens/authScreens/CatalogScreen';
 import {ProductSingleScreen} from '../screens/authScreens/ProductSingleScreen';
+import {ProfileScreen} from '../screens/authScreens/ProfileScreen';
+import {FavoriteScreen} from '../screens/authScreens/FavoriteScreens';
+import {ChatScreen} from '../screens/authScreens/ChatScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -20,6 +23,7 @@ export const TabNavigation = () => {
           backgroundColor: THEMES.DARK,
           borderTopLeftRadius: 40,
           borderTopRightRadius: 40,
+          paddingHorizontal: 35,
         },
       }}>
       <Tab.Screen
@@ -52,7 +56,7 @@ export const TabNavigation = () => {
       />
       <Tab.Screen
         name="Hom"
-        component={HomeScreen}
+        component={FavoriteScreen}
         options={{
           tabBarIcon: () => {
             return <Heart />;
@@ -72,18 +76,22 @@ export const TabNavigation = () => {
 const CatalogStack = () => {
   return (
     <Stack.Navigator
+      initialRouteName="HomeScreen"
       screenOptions={{
         headerShown: false,
         animation: 'slide_from_right',
         gestureDirection: 'horizontal',
         gestureEnabled: true,
       }}>
-      <Stack.Screen name="CatalogScreen" component={CatalogScreen} />
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="CatalogScreen" component={CatalogScreen} />
+
       <Stack.Screen
         name="ProductSingleScreen"
         component={ProductSingleScreen}
       />
+      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+ 
     </Stack.Navigator>
   );
 };

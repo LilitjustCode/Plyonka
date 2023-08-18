@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
   input: {
     // width: '100%',
     flex: 1,
-    height: '100%',
+
+    height: 40,
     paddingLeft: 30,
     color: THEMES.DARK,
     fontFamily: 'Montserrat-Regular',

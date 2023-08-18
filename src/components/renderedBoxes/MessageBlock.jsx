@@ -13,43 +13,15 @@ import {CameraSmall, HeartDark} from '../includeSvg';
 
 const innerWidth = Dimensions.get('window').width - THEMES.PADDING_HORIZONTAL;
 
-export const ProductItems = ({pageStyle, onPress}) => {
+export const MessageBlock = ({pageStyle, onPress}) => {
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          width: pageStyle == 1 ? innerWidth : innerWidth / 2 - 5,
-          height: pageStyle == 1 ? 278 : 180,
-          paddingHorizontal: pageStyle == 1 ? 24 : 10,
-          paddingVertical: pageStyle == 1 ? 13 : 10,
-        },
-      ]}>
-      <View style={styles.header}>
-        <View style={{width: pageStyle == 1 ? '20%' : '22%'}} />
-        <MediumText style={styles.title}>Пленка</MediumText>
-        <View
-          style={[
-            styles.headerIcons,
-            {
-              columnGap: pageStyle == 1 ? 10 : 3,
-            },
-          ]}>
-          <TouchableOpacity onPress={() => alert('Camera')}>
-            <CameraSmall />
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => alert('Heart')}>
-            <HeartDark />
-          </TouchableOpacity>
-        </View>
-      </View>
-
+    <View style={styles.container}>
       <View
         style={[
           styles.imageParent,
           {
-            height: pageStyle == 1 ? '75%' : '65%',
+            width: 250,
+            height: 150,
           },
         ]}>
         <Image
@@ -58,6 +30,7 @@ export const ProductItems = ({pageStyle, onPress}) => {
             width: '100%',
             height: '100%',
             resizeMode: 'contain',
+            borderRadius: 10,
           }}
         />
         <View
@@ -69,33 +42,44 @@ export const ProductItems = ({pageStyle, onPress}) => {
           ]}>
           <DarkButton
             style={{
-              height: pageStyle == 1 ? 36 : 26,
+              width: 132,
+              height: 26,
             }}
             textStyle={{
-              fontSize: pageStyle == 1 ? 20 : 12,
+              fontSize: 12,
             }}
             onPress={onPress}>
             Подробнее
           </DarkButton>
         </View>
       </View>
-      <MediumText
-        style={{
-          opacity: 0.3,
-          textAlign: 'center',
-          marginTop: 25 ,
-          fontSize: 13,
-          
-        }}>
-        Артикул
-      </MediumText>
+      <View style={styles.block}>
+        <MediumText
+          style={{
+            opacity: 0.3,
+            textAlign: 'center',
+            marginTop: pageStyle == 1 ? 20 : 15,
+            fontSize: 13,
+          }}>
+          Артикул
+        </MediumText>
+        <MediumText
+          style={{
+            opacity: 0.3,
+            textAlign: 'center',
+            marginTop: pageStyle == 1 ? 20 : 15,
+            fontSize: 13,
+          }}>
+          Артикул
+        </MediumText>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: THEMES.LIGHT,
+    // backgroundColor: THEMES.LIGHT,
     borderRadius: 10,
     marginTop: 10,
   },
@@ -109,11 +93,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: '100%',
     position: 'relative',
+    borderRadius: 10,
   },
   moreButtonParent: {
     alignSelf: 'center',
     position: 'absolute',
-    width: '80%',
+    width: 132,
     backgroundColor: THEMES.LIGHT,
   },
   headerIcons: {
@@ -123,5 +108,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 13,
+  },
+  block: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
 });

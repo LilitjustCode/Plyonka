@@ -30,6 +30,7 @@ export const Wrapper = ({children, barStyle, backgroundColor, style}) => {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
+    position: 'relative',
   },
   container: {
     flex: 1,

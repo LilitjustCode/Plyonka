@@ -10,12 +10,12 @@ import {MediumText} from '../ui/texts/MediumText';
 import {THEMES} from '../theme';
 import {IonArrowUp} from '../includeSvg';
 
-export const Boxes = ({style, image, aspectRatio}) => {
+export const Boxes = ({style, image, aspectRatio, onPress}) => {
   return (
     <View style={{...styles.box, ...style}}>
-      <MediumText style={{marginBottom: 30}}>Боксы</MediumText>
+      <MediumText style={{}}>Боксы</MediumText>
       <View style={styles.arrowImageParent}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onPress}>
           <IonArrowUp />
         </TouchableOpacity>
         <Image
@@ -30,11 +30,12 @@ export const Boxes = ({style, image, aspectRatio}) => {
 const styles = StyleSheet.create({
   box: {
     backgroundColor: THEMES.LIGHT,
-    width: Dimensions.get('window').width / 2.3,
-    // height: Math.random() * 200,
+    width: '48%',
+    // height: 179,
     alignItems: 'center',
     paddingVertical: 20,
     borderRadius: 10,
+    marginTop: 10,
   },
   arrowImageParent: {
     flexDirection: 'row',
@@ -43,5 +44,6 @@ const styles = StyleSheet.create({
     width: '100%',
     // height: '100%',
     paddingLeft: 10,
+    marginTop: 20,
   },
 });

@@ -37,7 +37,11 @@ export const LoginScreen = () => {
           Забыли пароль ?
         </RegularText>
 
-        <DarkButton>Войти</DarkButton>
+        <DarkButton
+          onPress={() => navigation.navigate('TabNavigation')}
+          style={{borderRadius: 10}}>
+          Войти
+        </DarkButton>
         <LightButton
           style={styles.lightButton}
           onPress={() => {

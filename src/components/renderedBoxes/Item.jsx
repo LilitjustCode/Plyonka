@@ -13,32 +13,28 @@ import {CameraSmall, HeartDark} from '../includeSvg';
 
 const innerWidth = Dimensions.get('window').width - THEMES.PADDING_HORIZONTAL;
 
-export const ProductItems = ({pageStyle, onPress}) => {
+export const Item = ({pageStyle, onPress}) => {
   return (
     <View
       style={[
         styles.container,
         {
-          width: pageStyle == 1 ? innerWidth : innerWidth / 2 - 5,
-          height: pageStyle == 1 ? 278 : 180,
-          paddingHorizontal: pageStyle == 1 ? 24 : 10,
-          paddingVertical: pageStyle == 1 ? 13 : 10,
+          width: 150,
+          height: 146,
+          paddingHorizontal: 6,
+          marginTop: 9,
         },
       ]}>
       <View style={styles.header}>
-        <View style={{width: pageStyle == 1 ? '20%' : '22%'}} />
+        <View style={{width: '12%'}} />
         <MediumText style={styles.title}>Пленка</MediumText>
         <View
           style={[
             styles.headerIcons,
             {
-              columnGap: pageStyle == 1 ? 10 : 3,
+              columnGap: pageStyle == 1 ? 10 : 6,
             },
           ]}>
-          <TouchableOpacity onPress={() => alert('Camera')}>
-            <CameraSmall />
-          </TouchableOpacity>
-
           <TouchableOpacity onPress={() => alert('Heart')}>
             <HeartDark />
           </TouchableOpacity>
@@ -49,7 +45,7 @@ export const ProductItems = ({pageStyle, onPress}) => {
         style={[
           styles.imageParent,
           {
-            height: pageStyle == 1 ? '75%' : '65%',
+            height: '65%',
           },
         ]}>
         <Image
@@ -64,31 +60,21 @@ export const ProductItems = ({pageStyle, onPress}) => {
           style={[
             styles.moreButtonParent,
             {
-              bottom: pageStyle == 1 ? -20 : -13,
+              bottom: -13,
             },
           ]}>
           <DarkButton
             style={{
-              height: pageStyle == 1 ? 36 : 26,
+              height: 26,
             }}
             textStyle={{
-              fontSize: pageStyle == 1 ? 20 : 12,
+              fontSize: 12,
             }}
             onPress={onPress}>
             Подробнее
           </DarkButton>
         </View>
       </View>
-      <MediumText
-        style={{
-          opacity: 0.3,
-          textAlign: 'center',
-          marginTop: 25 ,
-          fontSize: 13,
-          
-        }}>
-        Артикул
-      </MediumText>
     </View>
   );
 };
@@ -96,17 +82,17 @@ export const ProductItems = ({pageStyle, onPress}) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: THEMES.LIGHT,
-    borderRadius: 10,
-    marginTop: 10,
+
+    marginRight: 10,
   },
   header: {
-    // height: 25,
+    height: 25,
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
   },
   imageParent: {
-    borderWidth: 1,
+    // borderWidth: 1,
     width: '100%',
     position: 'relative',
   },
@@ -119,7 +105,6 @@ const styles = StyleSheet.create({
   headerIcons: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: -5,
   },
   title: {
     fontSize: 13,

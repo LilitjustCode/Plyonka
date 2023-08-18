@@ -26,14 +26,16 @@ export const Navbar = ({backIcon}) => {
       <SemiBoldText style={styles.text}>LOGO</SemiBoldText>
 
       <View style={styles.chatProfileParent}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('RequestsScreen')}>
           <Image
             source={require('../../assets/images/ChatIconNav.png')}
             style={{tintColor: THEMES.LIGHT, width: 25}}
           />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.avatarParent}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('ProfileScreen')}
+          style={styles.avatarParent}>
           <Image
             source={require('../../assets/images/Ellipse3.png')}
             style={styles.avatar}

@@ -5,6 +5,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {THEMES} from '../components/theme';
 import {TabNavigation} from './TabNavigation';
 import {ForgotPasswordScreen} from '../screens/notAuthScreens/ForgotPasswordScreen';
+import {ChatScreen} from '../screens/authScreens/ChatScreen';
+import {RequestsScreen} from '../screens/authScreens/RequestsScreen';
 
 const Stack = createNativeStackNavigator();
 export const AuthNavigation = () => {
@@ -23,6 +25,8 @@ export const AuthNavigation = () => {
         component={ForgotPasswordScreen}
       />
       <Stack.Screen name="TabNavigation" component={TabNavigation} />
+      <Stack.Screen name="ChatScreen" component={ChatScreen} />
+      <Stack.Screen name="RequestsScreen" component={RequestsScreen} />
     </Stack.Navigator>
   );
 };

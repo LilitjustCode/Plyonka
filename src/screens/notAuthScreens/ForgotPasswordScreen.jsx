@@ -1,5 +1,11 @@
 import {useNavigation} from '@react-navigation/native';
-import {Dimensions, StyleSheet, View} from 'react-native';
+import {
+  Dimensions,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import {THEMES} from '../../components/theme';
 import {MainInput} from '../../components/inputs/inputs';
 import {Wrapper} from '../../components/Wrapper';
@@ -8,6 +14,7 @@ import {DarkButton} from '../../components/ui/buttons/DarkButton';
 import {RegularText} from '../../components/ui/texts/RegularText';
 import {useState} from 'react';
 import {AngleLeftBlack} from '../../components/includeSvg';
+import {MediumText} from '../../components/ui/texts/MediumText';
 
 export const ForgotPasswordScreen = () => {
   const navigation = useNavigation();
@@ -16,14 +23,15 @@ export const ForgotPasswordScreen = () => {
 
   return (
     <Wrapper barStyle="dark-content" backgroundColor={THEMES.BACKGROUND}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => {
+          navigation.goBack();
+        }}>
+        <AngleLeftBlack />
+        <MediumText style={styles.backText}>Назад</MediumText>
+      </TouchableOpacity>
       <View style={styles.container}>
-        <View style={styles.goBack}>
-          <AngleLeftBlack
-            onPress={() => {
-              navigation.goBack();
-            }}
-          />
-        </View>
         <SemiBoldText style={styles.logo}>LOGO</SemiBoldText>
 
         <RegularText style={styles.welcome}>Восстановление</RegularText>
@@ -54,10 +62,11 @@ export const ForgotPasswordScreen = () => {
           }
         />
         <DarkButton
+          style={{borderRadius: 10}}
           onPress={() => {
             navigation.navigate('TabNavigation');
           }}>
-          Установить новый пароль
+          <Text style={styles.darkButtonText}>Установить новый пароль</Text>
         </DarkButton>
       </View>
     </Wrapper>
@@ -98,5 +107,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     justifyContent: 'flex-start',
     width: '100%',
+  },
+  darkButtonText: {
+    fontSize: 17,
+    fontFamily: 'Montserrat-Medium',
+  },
+  backButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    position: 'absolute',
+    top: 25,
+    left: 15,
   },
 });
